@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/KAM-Website/keheilan-index.html" },
+    { "source": "/(.*)", "destination": "/KAM-Website/$1" }
+  ]
+}
