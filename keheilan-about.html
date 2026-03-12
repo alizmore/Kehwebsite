@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Firm — Keheilan Asset Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --accent:#00917C;--accent2:#055A57;--accent-light:rgba(0,145,124,0.10);
+  --aqua:#00FFDA;--peach:#FFCE7B;
+  --dark:#141414;--ink:#141414;--ink60:rgba(20,20,20,0.6);--ink30:rgba(20,20,20,0.3);
+  --bg:#ffffff;--bg2:#F0F7F6;--line:rgba(5,90,87,0.12);
+  --serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',sans-serif;
+  --r:12px;--r-pill:999px;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(20,20,20,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-logo{text-decoration:none;}
+.nav-center{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-pill);padding:6px 8px;}
+.nav-center a{font-size:0.78rem;color:rgba(255,255,255,0.55);text-decoration:none;padding:7px 16px;border-radius:var(--r-pill);transition:all 0.2s;}
+.nav-center a.active,.nav-center a:hover{color:#fff;background:rgba(255,255,255,0.1);}
+.nav-cta{font-size:0.78rem;font-weight:500;color:var(--dark);background:var(--aqua);padding:10px 22px;border-radius:var(--r-pill);text-decoration:none;}
+@media(max-width:768px){.nav-center{display:none;}}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}.nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s;}.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}.nav-hamburger.open span:nth-child(2){opacity:0;}.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}.mob-nav{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(20,20,20,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);flex-direction:column;padding:8px 0 16px;}.mob-nav.open{display:flex;}.mob-nav a{font-size:0.9rem;color:rgba(255,255,255,0.65);text-decoration:none;padding:14px 28px;transition:all 0.15s;}.mob-nav a:hover,.mob-nav a.active{color:#fff;background:rgba(255,255,255,0.05);}.mob-nav .mob-cta{margin:12px 24px 0;background:var(--aqua);color:var(--dark);border-radius:var(--r-pill);text-align:center;font-weight:500;padding:13px 24px;}@media(max-width:768px){.nav-hamburger{display:flex;}.nav-cta{display:none;}}
+/* SHARED */
+.tag-pill{display:inline-flex;font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:6px 14px;border-radius:var(--r-pill);margin-bottom:20px;}
+.rv{opacity:0;transform:translateY(20px);transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1),transform 0.65s cubic-bezier(0.22,1,0.36,1);}
+.rv.on{opacity:1;transform:none;}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+.section-hd{text-align:center;max-width:640px;margin:0 auto 60px;}
+.section-hd h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;color:var(--ink);margin:12px 0 14px;}
+.section-hd p{font-size:0.9375rem;color:var(--ink60);line-height:1.7;}
+/* HERO */
+.hero{min-height:100svh;background:var(--dark);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+.hero-pattern{position:absolute;inset:0;background-image:linear-gradient(rgba(0,145,124,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,145,124,0.06) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 30%,transparent 100%);}
+.hero-glow1{position:absolute;top:-80px;left:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,145,124,0.15) 0%,transparent 65%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:-80px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,206,123,0.08) 0%,transparent 65%);pointer-events:none;}
+.hero-content{position:relative;z-index:1;max-width:760px;padding:0 24px;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:0.74rem;font-weight:500;color:var(--aqua);background:rgba(0,255,218,0.08);border:1px solid rgba(0,255,218,0.2);padding:8px 20px;border-radius:var(--r-pill);margin-bottom:28px;animation:fadeUp 0.6s 0.2s both;}
+.hero-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--aqua);}
+.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,7vw,5rem);font-weight:400;line-height:1.06;color:#fff;letter-spacing:-0.02em;margin-bottom:20px;animation:fadeUp 0.7s 0.35s both;}
+.hero h1 em{font-style:italic;color:var(--aqua);}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,0.45);line-height:1.75;max-width:540px;margin:0 auto 40px;animation:fadeUp 0.7s 0.5s both;}
+.hero-stat-row{display:flex;align-items:center;justify-content:center;gap:48px;animation:fadeUp 0.7s 0.65s both;}
+.h-stat{text-align:center;}
+.h-stat-num{font-family:var(--serif);font-size:2.6rem;color:var(--aqua);line-height:1;}
+.h-stat-label{font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:4px;}
+.h-divider{width:1px;height:48px;background:rgba(255,255,255,0.08);}
+/* MISSION */
+.mission{padding:100px 40px;background:var(--bg);}
+.mission-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.mission-left h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:24px;}
+.mission-left h2 em{font-style:italic;color:var(--accent);}
+.mission-quote{background:var(--bg2);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:32px 36px;}
+.mission-quote p{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--ink);line-height:1.75;}
+@media(max-width:768px){.mission-inner{grid-template-columns:1fr;gap:40px;}}
+/* WHO WE ARE */
+.whoweare{padding:100px 40px;background:var(--bg2);}
+.whoweare-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;}
+.whoweare-text h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:24px;}
+.whoweare-text h2 em{font-style:italic;color:var(--accent);}
+.whoweare-text p{font-size:0.9375rem;color:var(--ink60);line-height:1.75;margin-bottom:16px;}
+.presence-stats{display:flex;flex-direction:column;gap:16px;}
+.pres-stat{background:var(--bg);border-radius:var(--r);padding:24px 28px;border:1px solid var(--line);display:flex;align-items:center;gap:20px;}
+.pres-stat-icon{width:40px;height:40px;border-radius:var(--r);background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pres-stat-text strong{display:block;font-size:0.875rem;color:var(--ink);margin-bottom:2px;}
+.pres-stat-text span{font-size:0.8rem;color:var(--ink60);}
+@media(max-width:768px){.whoweare-inner{grid-template-columns:1fr;gap:40px;}}
+/* PILLARS */
+.pillars{padding:100px 40px;background:var(--bg);}
+.pillars-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);}
+.pillar-card{background:var(--bg);padding:36px 28px;position:relative;}
+.pillar-bar{position:absolute;top:0;left:0;right:0;height:4px;}
+.p-vc .pillar-bar{background:var(--accent2);}
+.p-pe .pillar-bar{background:var(--accent);}
+.p-gm .pillar-bar{background:var(--peach);}
+.p-ri .pillar-bar{background:rgba(0,145,124,0.3);}
+.pillar-num{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.pillar-name{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.2;}
+.pillar-divider{height:1px;background:var(--line);margin-bottom:16px;}
+.pillar-body{font-size:0.82rem;color:var(--ink60);line-height:1.7;}
+@media(max-width:900px){.pillars-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:580px){.pillars-grid{grid-template-columns:1fr;}}
+/* PROCESS */
+.process{padding:100px 40px;background:var(--bg2);}
+.process-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:80px;}
+.process-left h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;color:var(--ink);line-height:1.15;margin-top:16px;}
+.process-left p{font-size:0.9375rem;color:var(--ink60);line-height:1.7;margin-top:16px;}
+.process-steps{display:flex;flex-direction:column;}
+.process-step{padding:24px 0;border-bottom:1px solid var(--line);}
+.process-step:first-child{border-top:1px solid var(--line);}
+.step-header{display:flex;align-items:center;justify-content:space-between;}
+.step-num{font-size:0.72rem;font-weight:600;color:var(--accent);}
+.step-title{font-size:1rem;font-weight:600;color:var(--ink);margin:8px 0;}
+.step-body{font-size:0.875rem;color:var(--ink60);line-height:1.7;}
+@media(max-width:768px){.process-inner{grid-template-columns:1fr;gap:48px;}}
+/* CONTACT */
+.contact{padding:100px 40px;background:var(--bg);id:contact}
+.contact-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-left h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:16px;}
+.contact-left h2 em{font-style:italic;color:var(--accent);}
+.contact-left p{font-size:0.9375rem;color:var(--ink60);line-height:1.75;margin-bottom:32px;}
+.contact-details{display:flex;flex-direction:column;gap:16px;}
+.contact-item{display:flex;align-items:flex-start;gap:14px;}
+.contact-item-icon{width:38px;height:38px;border-radius:var(--r);background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.contact-item-text strong{display:block;font-size:0.8rem;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.contact-item-text span,.contact-item-text a{font-size:0.875rem;color:var(--ink60);text-decoration:none;line-height:1.6;}
+.contact-item-text a:hover{color:var(--accent);}
+.contact-form{background:var(--bg2);border-radius:var(--r);padding:40px;border:1px solid var(--line);}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:0.78rem;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:0.02em;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;font-family:var(--sans);font-size:0.875rem;color:var(--ink);outline:none;transition:border-color 0.2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);}
+.form-group textarea{height:110px;resize:vertical;}
+.form-group select{appearance:none;cursor:pointer;}
+.form-submit{width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--r-pill);padding:14px 24px;font-family:var(--sans);font-size:0.875rem;font-weight:500;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.form-submit:hover{background:var(--accent2);}
+@media(max-width:768px){.contact-inner{grid-template-columns:1fr;gap:48px;}}
+/* CTA BANNER */
+.cta-banner{padding:80px 40px;background:var(--accent2);text-align:center;position:relative;overflow:hidden;}
+.cta-banner::before{content:'';position:absolute;top:-80px;right:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(0,255,218,0.14) 0%,transparent 65%);}
+.cta-banner h2{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:#fff;margin-bottom:12px;position:relative;}
+.cta-banner p{font-size:0.9375rem;color:rgba(255,255,255,0.55);margin-bottom:32px;position:relative;}
+.cta-banner a{display:inline-flex;align-items:center;gap:10px;font-size:0.82rem;font-weight:500;color:var(--dark);background:var(--aqua);padding:14px 30px;border-radius:var(--r-pill);text-decoration:none;position:relative;transition:all 0.2s;}
+/* FOOTER */
+footer{padding:40px;background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.footer-logo{text-decoration:none;}
+.footer-links{display:flex;gap:24px;list-style:none;}
+.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;}
+.footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.18);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="logo.png" alt="Keheilan Asset Management" style="height:34px;width:auto;display:block;"></a>
+  <div class="nav-center">
+    <a href="index.html">Home</a>
+    <a href="keheilan-kaif.html">KAIF</a>
+    <a href="keheilan-sukuk.html">Sukuk</a>
+    <a href="keheilan-index.html">Index Portfolios</a>
+    <a href="keheilan-about.html" class="active">The Firm</a>
+  </div>
+  <a href="#contact" class="nav-cta">Schedule a Call</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <a href="index.html">Home</a>
+  <a href="keheilan-kaif.html">KAIF</a>
+  <a href="keheilan-sukuk.html">Sukuk</a>
+  <a href="keheilan-index.html">Index Portfolios</a>
+  <a href="keheilan-about.html" class="active">The Firm</a>
+  <a href="#contact" class="mob-cta">Schedule a Call</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Keheilan Asset Management</div>
+    <h1>Building the Future of <em>Investment Excellence.</em></h1>
+    <p class="hero-sub">A global investment firm bridging traditional excellence with cutting-edge opportunities across Venture Capital, Private Equity, and Global Markets.</p>
+    <div class="hero-stat-row">
+      <div class="h-stat">
+        <div class="h-stat-num">3</div>
+        <div class="h-stat-label">Regions</div>
+      </div>
+      <div class="h-divider"></div>
+      <div class="h-stat">
+        <div class="h-stat-num">4</div>
+        <div class="h-stat-label">Investment Pillars</div>
+      </div>
+      <div class="h-divider"></div>
+      <div class="h-stat">
+        <div class="h-stat-num">100%</div>
+        <div class="h-stat-label">Shariah-Compliant</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="mission-inner">
+    <div class="rv">
+      <div class="tag-pill">Our Mission</div>
+      <h2>Sophisticated, ethical, and <em>innovative</em> financial solutions.</h2>
+      <p style="font-size:0.9375rem;color:var(--ink60);line-height:1.75;margin-top:0;">We are committed to bridging traditional investment excellence with cutting-edge opportunities — all while upholding the highest standards of integrity and responsible investing.</p>
+    </div>
+    <div class="mission-quote rv d1">
+      <p>"To transform the investment landscape by delivering sophisticated, ethical, and innovative financial solutions that create lasting value for our clients while contributing to sustainable economic growth."</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="whoweare">
+  <div class="whoweare-inner">
+    <div class="rv">
+      <div class="tag-pill">Who We Are</div>
+      <h2>Experienced professionals. <em>Lasting partnerships.</em></h2>
+      <p>We are a team of experienced investment professionals dedicated to building lasting partnerships with our clients. Our approach combines deep market expertise with innovative strategies to deliver exceptional results.</p>
+      <p>At Keheilan, we believe in the power of responsible investing. Every decision we make is guided by our commitment to creating value not just for our clients, but for the communities and industries we serve.</p>
+      <p>With a global presence spanning the United States, Europe, and the Middle East, we bring diverse perspectives and opportunities to every investment strategy.</p>
+    </div>
+    <div class="presence-stats rv d1">
+      <div class="pres-stat">
+        <div class="pres-stat-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="var(--accent)" stroke-width="1.5"/><path d="M9 2C9 2 6 6 6 9s3 7 3 7M9 2c0 0 3 4 3 7s-3 7-3 7M2 9h14" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="pres-stat-text"><strong>United States</strong><span>North American operations and venture access</span></div>
+      </div>
+      <div class="pres-stat">
+        <div class="pres-stat-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="var(--accent)" stroke-width="1.5"/><path d="M9 2C9 2 6 6 6 9s3 7 3 7M9 2c0 0 3 4 3 7s-3 7-3 7M2 9h14" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="pres-stat-text"><strong>Europe</strong><span>Headquartered in the Netherlands</span></div>
+      </div>
+      <div class="pres-stat">
+        <div class="pres-stat-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="var(--accent)" stroke-width="1.5"/><path d="M9 2C9 2 6 6 6 9s3 7 3 7M9 2c0 0 3 4 3 7s-3 7-3 7M2 9h14" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="pres-stat-text"><strong>Middle East</strong><span>Saudi Arabia, UAE, and Egypt coverage</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT PILLARS -->
+<section class="pillars">
+  <div class="section-hd rv">
+    <div class="tag-pill">Investment Pillars</div>
+    <h2>Four disciplines. One disciplined approach.</h2>
+    <p>We combine four complementary investment strategies to build resilient, diversified portfolios aligned with your long-term objectives.</p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar-card p-vc rv">
+      <div class="pillar-bar"></div>
+      <div class="pillar-num">01 / Venture Capital</div>
+      <div class="pillar-name">Early-Stage Innovation</div>
+      <div class="pillar-divider"></div>
+      <p class="pillar-body">Strategic investments in high-growth startups and emerging technologies to drive innovation and exceptional long-term returns.</p>
+    </div>
+    <div class="pillar-card p-pe rv d1">
+      <div class="pillar-bar"></div>
+      <div class="pillar-num">02 / Private Equity</div>
+      <div class="pillar-name">Established Value Creation</div>
+      <div class="pillar-divider"></div>
+      <p class="pillar-body">Long-term partnerships with established businesses, focused on operational improvement, sustainable growth, and value creation.</p>
+    </div>
+    <div class="pillar-card p-gm rv d2">
+      <div class="pillar-bar"></div>
+      <div class="pillar-num">03 / Global Markets</div>
+      <div class="pillar-name">International Diversification</div>
+      <div class="pillar-divider"></div>
+      <p class="pillar-body">Access to diverse investment opportunities across international markets, backed by comprehensive research and local expertise.</p>
+    </div>
+    <div class="pillar-card p-ri rv d3">
+      <div class="pillar-bar"></div>
+      <div class="pillar-num">04 / Responsible Investing</div>
+      <div class="pillar-name">ESG & Shariah Alignment</div>
+      <div class="pillar-divider"></div>
+      <p class="pillar-body">Sustainable and ethical investment practices guided by ESG principles and Shariah compliance for lasting positive impact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT PROCESS -->
+<section class="process">
+  <div class="process-inner">
+    <div class="rv">
+      <div class="tag-pill">Our Process</div>
+      <h2>A simple path to investment excellence.</h2>
+      <p>We have designed an efficient and transparent investment process to deliver value to your portfolio as quickly as possible.</p>
+    </div>
+    <div class="process-steps rv d1">
+      <div class="process-step">
+        <div class="step-header">
+          <span class="step-num">01/(04)</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--ink30)"><path d="M2.5 7h9M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-title">Discovery & Goal Alignment</div>
+        <p class="step-body">We begin with a deep understanding of your investment objectives, risk appetite, time horizon, and Shariah compliance requirements.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-header">
+          <span class="step-num">02/(04)</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--ink30)"><path d="M2.5 7h9M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-title">Strategy Construction</div>
+        <p class="step-body">Our team builds a tailored investment strategy across the relevant pillars — screening every instrument for compliance, quality, and risk-adjusted return potential.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-header">
+          <span class="step-num">03/(04)</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--ink30)"><path d="M2.5 7h9M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-title">Continuous Monitoring</div>
+        <p class="step-body">Positions are monitored in real time. Compliance, performance, and market conditions are tracked on an ongoing basis with regular reporting delivered to you.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-header">
+          <span class="step-num">04/(04)</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--ink30)"><path d="M2.5 7h9M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-title">Review & Optimisation</div>
+        <p class="step-body">We conduct regular portfolio reviews with you, adjusting the strategy as your goals evolve or market conditions change — always within your agreed risk parameters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / SCHEDULE A CALL -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="rv">
+      <div class="tag-pill">Schedule a Call</div>
+      <h2>Ready to explore your <em>investment journey?</em></h2>
+      <p>Our team of experts is here to guide you through every step. Reach out and we'll be in touch within one business day.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 5 6-5M2 4h12v9H2V4z" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="contact-item-text"><strong>Email</strong><a href="mailto:info@keheilan.com">info@keheilan.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z" stroke="var(--accent)" stroke-width="1.5"/><circle cx="8" cy="6" r="1.5" stroke="var(--accent)" stroke-width="1.5"/></svg>
+          </div>
+          <div class="contact-item-text"><strong>Office</strong><span>Konnetlaantje 4, Rijsenhout<br>1435 HW, Netherlands</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="3" stroke="var(--accent)" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="contact-item-text"><strong>LinkedIn</strong><a href="https://linkedin.com/company/keheilan" target="_blank">company/keheilan</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form rv d1">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label>I'm interested in</label>
+        <select>
+          <option value="">Select a product</option>
+          <option>KAIF — AI Index Fund</option>
+          <option>Sukuk Portfolios</option>
+          <option>Managed Index Portfolios</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your investment goals..."></textarea>
+      </div>
+      <button class="form-submit" onclick="window.location='mailto:info@keheilan.com'">
+        Send Message
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2 class="rv">A trusted firm built to grow your wealth.</h2>
+  <p class="rv d1">Ethical. Innovative. Global. Everything you need from a modern asset manager.</p>
+  <a href="mailto:info@keheilan.com" class="rv d2">
+    Get in Touch
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo"><img src="logo.png" alt="Keheilan Asset Management" style="height:28px;width:auto;display:block;"></a>
+    <ul class="footer-links">
+      <li><a href="keheilan-kaif.html">KAIF</a></li>
+      <li><a href="keheilan-sukuk.html">Sukuk</a></li>
+      <li><a href="keheilan-index.html">Index Portfolios</a></li>
+      <li><a href="keheilan-about.html">The Firm</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="footer-copy">&copy; 2026 Keheilan Asset Management</span>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}}),{threshold:0.08});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=scrollY>20?'rgba(20,20,20,0.98)':'rgba(20,20,20,0.92)';},{passive:true});
+const hbg=document.getElementById('hamburger');const mobNav=document.getElementById('mobNav');hbg.addEventListener('click',()=>{hbg.classList.toggle('open');mobNav.classList.toggle('open');});mobNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hbg.classList.remove('open');mobNav.classList.remove('open');}));
+</script>
+</body>
+</html>
